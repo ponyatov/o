@@ -1,0 +1,20 @@
+{
+    "python.pythonPath": "./bin/python3",
+
+    // configure recommendation: bind F12 key on this command for handy projects rebuild
+    "multiCommand.commands": [
+        {
+            "command": "multiCommand.build",
+            "sequence": [
+                "workbench.action.files.saveAll",
+                {"command": "workbench.action.terminal.sendSequence","args": {"text": "\u000Dclear ; make\u000D"}}
+            ],
+        },
+    ],
+
+    "files.exclude": {
+        "bin": true, "include":true, "lib*":true, "share":true, "pyvenv.cfg":true,
+    },
+
+    "editor.tabSize": 4,
+}
