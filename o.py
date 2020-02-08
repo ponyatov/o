@@ -1,6 +1,13 @@
 
 import os,sys
 
+def comment(s,l=80):
+    print( '#'*(l-len(s)+1) + ' ' + s )
+    sys.exit(-1)
+# comment('system init')
+
+
+############################################# Marvin Minsky's extended frame model
 
 class Frame:
     def __init__(self,V):
@@ -46,6 +53,7 @@ class Frame:
     def pop(self): return self.nest.pop()
     def top(self): return self.nest[-1]
 
+################################################################## primitive types
 
 class Primitive(Frame):
     def eval(self,env): env // self
@@ -57,6 +65,8 @@ class Integer(Number): pass
 class Hex(Integer): pass
 class Bin(Integer): pass
 
+################################################## EDS: executable data structures
+
 class Active(Frame): pass
 
 class VM(Active): pass
@@ -64,6 +74,7 @@ class VM(Active): pass
 vm = VM('vm') ; vm << vm
 
 
+############################################################ PLY: no-syntax parser
 
 import ply.lex as lex
 
@@ -98,6 +109,7 @@ def t_ANY_error(t): raise SyntaxError(t)
 lexer = lex.lex()
 
 
+###################################################################### interpreter
 
 def WORD(env):
     token = lexer.token()
@@ -121,6 +133,7 @@ def INTERP(env):
     print(env)
 
 
+###################################################################### system init
 
 if __name__ == '__main__':
     print(vm)
